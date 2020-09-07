@@ -61,7 +61,7 @@ class DartType {
     } else if (json is Map<String, dynamic>) {
       return _$DartTypeFromJson(json);
     } else {
-      throw 'Invalid json: $json';
+      throw 'Invalid json (${json.runtimeType}): $json';
     }
   }
 
