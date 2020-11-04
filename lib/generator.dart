@@ -75,10 +75,11 @@ Set<FragmentDefinitionNode> _extractFragments(SelectionSetNode selectionSet,
         .forEach((selection) {
       final fragmentDefinitions = fragmentsCommon.firstWhere(
           (fragmentDefinition) =>
-              fragmentDefinition.name.value == selection.name.value);
+              fragmentDefinition.name.value == selection.name.value,
+              orElse: () => null);
       result.add(fragmentDefinitions);
       result.addAll(
-          _extractFragments(fragmentDefinitions.selectionSet, fragmentsCommon));
+          _extractFragments(fragmentDefinitions?.selectionSet, fragmentsCommon));
     });
   }
   return result;
