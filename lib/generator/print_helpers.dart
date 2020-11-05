@@ -114,10 +114,11 @@ Spec classDefinitionToSpec(
         return fragments
             .firstWhere((f) {
               return f.name == i;
-            })
-            .properties
-            .map((p) => p.name.namePrintable);
+            }, orElse: () => null)
+            ?.properties
+            ?.map((p) => p.name.namePrintable);
       })
+      .where((i) => i != null)
       .expand((i) => i)
       .followedBy(definition.properties.map((p) => p.name.namePrintable));
 
